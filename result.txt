@@ -1,0 +1,78 @@
+'number' + 3 + 3 // result: number33 тому що конкатенація
+
+null + 3 //result: 3 тому що null це відсутність зн-ня
+
+5 && "qwerty" //result: qwerty тому що обидва істинні, повертає останнє
+
++'40' + +'2' + "hillel"  //result: 42hillel  Js завжди намагається привести все до числа + конкатенація
+
+'10' - 5 === 6;  //result: false , тому що 10-5===5
+
+true + false  //result: 1 , тому що true це 1
+
+'4px' - 3  //result: NaN, '4px' не строка та не число
+
+'4' - 3  //result: 1, Js завжди намагається привести все до числа
+
+'6' + 3 ** 0  //result 61 , фле вiдверто кажучи думав буде 7 , тому що 3 ** 0 ===1 i '6' + 1 =7 так як Js завжди намагається привести все до числа
+
+12 / '6'  //result 2 , так як 12/6
+
+'10' + (5 === 6) //result 10false , тому що 5 === 6 буде false i конкатенація
+
+null == ''  //result  false, так як null  порівнюється з string ('')
+
+3 ** (9 / 3);  //result 27 , 3 в ступінь 3
+
+!!'false' == !!'true'  //result true, тому що рядки 'false' і 'true' обидві непорожні, і !! перетворює їх на true.
+
+0 || '0' && 1  //result 1, '0' && 1 обидва істинні, поверне останнє; 0 || 1 -> 1,  0 - хибне, тому поверне "1"
+
+(+null == false) < 1;  // result false , null Завжди приводяться до false, false==false ->false , false <1 ->false
+
+false && true || true  // result true, false && true - обидва істинні, поверне останнє true, true || true -> true
+
+false && (false || true);  //result false, (false || true) - повертає true, якщо хоча б один з операндів є true , false && true ->повертає true, якщо обидва операнди є true, інакше повертає false
+
+(+null == false) < 1 ** 5;  //result false, (+null == false) ->null Завжди приводяться до false, 1 ** 5 = 1, false < 1 ->false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
