@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "be5be06e-a3cc-4242-9c10-f07f82408c8f",
+		"name": "DZ16.1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26715865"
+	},
+	"item": [
+		{
+			"name": "query",
+			"item": [
+				{
+					"name": "basicRequest",
+					"item": [
+						{
+							"name": "GetAllAbstractCities",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"var randomIds = [];\r",
+											"pm.test(\"Check 4 random city IDs\", function () {\r",
+											"    var cities = pm.response.json().data.getAllCities;\r",
+											"    for (var i = 0; i < 4; i++) {\r",
+											"        var randomIndex = Math.floor(Math.random() * cities.length);\r",
+											"        var id = Number(cities[randomIndex].id);\r",
+											"        randomIds.push(id);\r",
+											"    }\r",
+											"    pm.collectionVariables.set(\"randomCityIds\", JSON.stringify(randomIds));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"average square \", function () {\r",
+											"    var cities = pm.response.json().data.getAllCities;\r",
+											"    var totalSquare = 0;\r",
+											"    for (var i = 0; i < cities.length; i++) {\r",
+											"        totalSquare += cities[i].square;\r",
+											"    }\r",
+											"    var average = totalSquare / cities.length;\r",
+											"    console.log(\"Average square :\", average);\r",
+											"    pm.collectionVariables.set(\"averageSquare\", average);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n  getAllCities{\r\n    id\r\n    name\r\n    square\r\n  }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{url}}",
+									"host": [
+										"{{url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetCityDescriptionById",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var randomIds = JSON.parse(pm.collectionVariables.get(\"randomCityIds\"));",
+											"pm.collectionVariables.set(\"cities\", JSON.stringify(randomIds));",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query($cities: [ID!]!) {\n  getCitiesByIds(in: $cities) {\n    id\n    name    \n    ... on City{\n        description\n    }\n  }\n}\n",
+										"variables": "{ \"cities\": {{cities}} }"
+									}
+								},
+								"url": {
+									"raw": "{{url}}",
+									"host": [
+										"{{url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetCityiesByRangeId",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var services = JSON.parse(pm.collectionVariables.get(\"randomCityIds\"));",
+											"",
+											"",
+											"",
+											"function minId() {",
+											"    var min = 50;",
+											"    for (let key in services) {",
+											"        services[key] = parseInt(services[key]);",
+											"        if (min > services[key]) {",
+											"            min = services[key]",
+											"        }",
+											"    }",
+											"    return min;",
+											"}",
+											"",
+											"var minId = minId();",
+											"pm.collectionVariables.set(\"minId\", minId);",
+											"",
+											"function maxId() {",
+											"    var max = 0;",
+											"    for (let key in services) {",
+											"        services[key] = parseInt(services[key]);",
+											"        if (max < services[key]) {",
+											"            max = services[key]",
+											"        }",
+											"    }",
+											"    return max;",
+											"}",
+											"",
+											"var maxId = maxId();",
+											"pm.collectionVariables.set(\"maxId\", maxId);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query($minId:Int!,$maxId:Int!){\r\n  getCityByRangeId(filter:{minId:$minId, maxId:$maxId}){\r\n    ... CityDetails\r\n  }\r\n}\r\n\r\nfragment CityDetails on CityAbstract{\r\n    id\r\n    name\r\n    square\r\n}\r\n",
+										"variables": "{\n    \"minId\":{{minId}},\n    \"maxId\":{{maxId}}\n}"
+									}
+								},
+								"url": {
+									"raw": "{{url}}",
+									"host": [
+										"{{url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddCity",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var random_city = pm.variables.replaceIn(\"{{$randomCity}}\");",
+											"pm.collectionVariables.set(\"random_city\",random_city);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation($name: String!, $square: Float!, $description: String!) {\r\n  addCity(name: $name, square: $square, description: $description) {\r\n    id\r\n    name\r\n    square\r\n    ... on City {\r\n      description\r\n    }\r\n  }\r\n}\r\n",
+										"variables": "{\n    \"name\": \"{{random_city}}\",\n    \"square\": {{averageSquare}},\n    \"description\": \"Best\"\n}\n"
+									}
+								},
+								"url": {
+									"raw": "{{url}}",
+									"host": [
+										"{{url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://graphql-ukrainian-cities.hillel.it/graphql",
+			"type": "string"
+		},
+		{
+			"key": "minId",
+			"value": "10",
+			"type": "string"
+		},
+		{
+			"key": "maxId",
+			"value": "15",
+			"type": "string"
+		},
+		{
+			"key": "randomCityIds",
+			"value": ""
+		},
+		{
+			"key": "max",
+			"value": ""
+		},
+		{
+			"key": "23",
+			"value": ""
+		},
+		{
+			"key": "cities",
+			"value": ""
+		},
+		{
+			"key": "averageSquare",
+			"value": ""
+		},
+		{
+			"key": "random_city",
+			"value": ""
+		}
+	]
+}
