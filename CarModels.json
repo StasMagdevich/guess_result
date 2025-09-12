@@ -1,0 +1,5 @@
+{"_id":{"$oid":"68c3e7edd420230b3e7081f8"},"carBrandId":1,"title":"Venza","createdAt":{"$date":"2025-09-12T09:29:17.061Z"},"updatedAt":{"$date":"2025-09-12T09:29:17.061Z"}}
+{"_id":{"$oid":"68c3e7edd420230b3e7081f9"},"carBrandId":2,"title":"X5","createdAt":{"$date":"2025-09-12T09:29:17.061Z"},"updatedAt":{"$date":"2025-09-12T09:29:17.061Z"}}
+{"_id":{"$oid":"68c3e7edd420230b3e7081fa"},"carBrandId":3,"title":"A4","createdAt":{"$date":"2025-09-12T09:29:17.061Z"},"updatedAt":{"$date":"2025-09-12T09:29:17.061Z"}}
+{"_id":{"$oid":"68c3e7edd420230b3e7081fb"},"carBrandId":4,"title":"Benz","createdAt":{"$date":"2025-09-12T09:29:17.061Z"},"updatedAt":{"$date":"2025-09-12T09:29:17.061Z"}}
+{"_id":{"$oid":"68c3e7edd420230b3e7081fc"},"carBrandId":5,"title":"Focus","createdAt":{"$date":"2025-09-12T09:29:17.061Z"},"updatedAt":{"$date":"2025-09-12T09:29:17.061Z"}}
