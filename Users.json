@@ -1,0 +1,5 @@
+{"_id":{"$oid":"68c3e661d420230b3e7081e9"},"email":"john@example.com","password":"123456","createdAt":{"$date":"2025-09-12T09:22:41.32Z"},"updatedAt":{"$date":"2025-09-12T09:22:41.32Z"},"role":"admin"}
+{"_id":{"$oid":"68c3e661d420230b3e7081ea"},"email":"anna@example.com","password":"qwerty","createdAt":{"$date":"2025-09-12T09:22:41.32Z"},"updatedAt":{"$date":"2025-09-12T09:22:41.32Z"},"role":"user"}
+{"_id":{"$oid":"68c3e661d420230b3e7081eb"},"email":"mike@example.com","password":"pass123","createdAt":{"$date":"2025-09-12T09:22:41.32Z"},"updatedAt":{"$date":"2025-09-12T09:22:41.32Z"},"role":"user"}
+{"_id":{"$oid":"68c3e661d420230b3e7081ec"},"email":"kate@example.com","password":"abc123","createdAt":{"$date":"2025-09-12T09:22:41.32Z"},"updatedAt":{"$date":"2025-09-12T09:22:41.32Z"},"role":"moderator"}
+{"_id":{"$oid":"68c3e661d420230b3e7081ed"},"email":"bob@example.com","password":"securepwd","createdAt":{"$date":"2025-09-12T09:22:41.32Z"},"updatedAt":{"$date":"2025-09-12T09:22:41.32Z"},"role":"user"}
